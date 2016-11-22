@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 import databot.configbot
 # Constantes
-tokebot = databot.configbot.tokenbot
+tokenbot = databot.configbot.tokenbot
 client = discord.Client()
 logging.basicConfig(level=logging.INFO,
 format='%(asctime)s | %(levelname)s | %(name)s: %(message)s')
@@ -71,8 +71,6 @@ async def commandos_admin(message):
 
         await client.send_message(message.channel, lista_argumentos[0])
         await client.send_message(message.channel, lista_argumentos[1])
-
-
 
 # ---------------------------------------------------------------------
 
@@ -156,6 +154,5 @@ async def on_message(message):
         await client.send_message(message.channel,
         'Invitame a tu servidor! https://goo.gl/d4N8bS')
 
-
 client.accept_invite('https://discord.gg/98HUzhj')
-client.run(tokebot)
+client.run(tokenbot)
