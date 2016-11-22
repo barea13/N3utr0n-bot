@@ -32,7 +32,7 @@ logger.addHandler(handler)
 # ---------------------------------------------------------------------
 async def commandos_admin(message):
     if message.content.startswith('-kick'):
-        print(time.asctime() + ' - ' + str(message.author) + ' > -kick')
+        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -kick')
 
         usuario = message.content.strip('-kick ')
         member = discord.utils.find(lambda m: m.mention == usuario,
@@ -42,7 +42,7 @@ async def commandos_admin(message):
         ':x: El usuario ' + usuario + ' ha sido expulsado.')
 
     if message.content.startswith('-ban'):
-        print(time.asctime() + ' - ' + str(message.author) + ' > -ban')
+        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -ban')
 
         usuario = message.content.strip('-ban ')
         member = discord.utils.find(lambda m: m.mention == usuario,
@@ -52,7 +52,7 @@ async def commandos_admin(message):
         ':x: :x: El usuario ' + usuario + ' ha sido baneado.')
 
     if message.content.startswith('-purge'):
-        print(time.asctime() + ' - ' + str(message.author) + ' > -purge')
+        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -purge')
 
         counter = 0
         await client.send_message(message.channel,
@@ -99,16 +99,16 @@ async def on_message(message):
     tiempo_init = datetime.now()
 
     await commandos_admin(message)
-    await conversation(message)
 
     if message.content.startswith('!help'):
-        print(time.asctime() + ' - ' + str(message.author) + ' > !help')
+        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > !help')
 
         await client.send_message(message.channel,
-        'El prefijo de este bot es \'-\', un guión. Por ejemplo: `-ping`')
+        'El prefijo de este bot es \'-\', un guión. Por ejemplo: `-ping`' +
+        '\nPor lo tanto utiliza `-help` si quieres saber los comandos que hay disponibles :mag:')
 
     if message.content.startswith('-help'): # Comando ayuda
-        print(time.asctime() + ' - ' + str(message.author) + ' > -help')
+        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -help')
 
         await client.send_message(message.channel,
         ':arrow_forward: COMANDOS:\n'
@@ -122,7 +122,7 @@ async def on_message(message):
         '```')
 
     if message.content.startswith('-ping'): # Dice la fecha de cuando se inicio el server
-        print(time.asctime() + ' - ' + str(message.author) + ' > -ping')
+        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -ping')
 
         msg = await client.send_message(message.channel,
         '**PONG!** Creado por **@Barea1396#5050**'
@@ -134,15 +134,8 @@ async def on_message(message):
         '**PONG!** Creado por **@Barea1396#5050**'
         '\n\nPing: `' + str(tiempo_total) + '` ms')
 
-    if message.content.startswith('-prueba'):
-        msg = await client.send_message(message.channel, 'Ping: ``')
-        tiempo_fin = datetime.now()
-        tiempo_total = tiempo_fin.microsecond - tiempo_init.microsecond
-        tiempo_total = tiempo_total/10000
-        await client.edit_message(msg, 'Ping: `' + str(tiempo_total) + '` ms')
-
     if message.content.startswith('-invitar'): # Devuelve el link para añadir el bot
-        print(time.asctime() + ' - ' + str(message.author) + ' > -invitar')
+        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -invitar')
 
         await client.send_message(message.channel,
         'Invitame a tu servidor! https://goo.gl/d4N8bS')
