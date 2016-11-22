@@ -65,23 +65,15 @@ async def commandos_admin(message):
         await client.send_message(message.channel,
         '**¡Borrado exitoso!** Se han borrado los {} últimos mensajes'.format(counter))
 
+# ---------------------------------------- ACUERDATE DE ESTO
     if message.content.startswith('-hola'): # Prueba de parámetros/argumentos
         argumentos = message.content[5:]
         lista_argumentos = argumentos.split()
-
-        await client.send_message(message.channel, lista_argumentos[0])
-        await client.send_message(message.channel, lista_argumentos[1])
-
-# ---------------------------------------------------------------------
-
-
-async def conversation(message):
-    if message.content.startswith('Hola ' + client.user.mention):
-        print(time.asctime() + ' - ' + str(message.author) + ' > Hola @N3utr0n')
-
-        await client.send_message(message.channel,
-        'Hola ' +
-        message.author.mention + ', ¿qué tal estás?')
+        if len(lista_argumentos) > 0:
+            await client.send_message(message.channel, lista_argumentos[0])
+            await client.send_message(message.channel, lista_argumentos[1])
+        else:
+            await client.send_message(message.channel, 'Faltan argumentos')
 
 # ---------------------------------------------------------------------
 
@@ -119,13 +111,14 @@ async def on_message(message):
         print(time.asctime() + ' - ' + str(message.author) + ' > -help')
 
         await client.send_message(message.channel,
-        'Estos son sus comandos:\n'
+        ':arrow_forward: COMANDOS:\n'
         '```Markdown'
-        '\n-ping'
-        '\n-purge'
-        '\n-invitar'
-        '\n-kick'
-        '\n-ban'
+        '\nEl prefijo de este bot es un guión \'-\''
+        '\n-ping -- Devuelve el tiempo que tarda en enviar el mensaje'
+        '\n-purge -- elimina un max de 100 mensajes de una vez'
+        '\n-invitar -- Devuelve el link para añadir al bot en tu servidor'
+        '\n-kick -- Puedes expulsar a un miembro del servidor usando la mención'
+        '\n-ban -- Baneas a un miembro del servidor usando la mención'
         '```')
 
     if message.content.startswith('-ping'): # Dice la fecha de cuando se inicio el server
