@@ -12,7 +12,7 @@ import databot.configbot
 # Constantes
 tokenbot = databot.configbot.tokenbot
 client = discord.Client()
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(level=logging.CRITICAL,
 format='%(asctime)s | %(levelname)s | %(name)s: %(message)s')
 
 logger = logging.getLogger('discord')
@@ -32,7 +32,8 @@ logger.addHandler(handler)
 # ---------------------------------------------------------------------
 async def commandos_admin(message):
     if message.content.startswith('-kick'):
-        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -kick')
+        print(time.asctime() + ' - ' + str(message.server)
+        + ' - ' + str(message.author) + ' > -kick')
 
         usuario = message.content.strip('-kick ')
         member = discord.utils.find(lambda m: m.mention == usuario,
@@ -42,7 +43,8 @@ async def commandos_admin(message):
         ':x: El usuario ' + usuario + ' ha sido expulsado.')
 
     if message.content.startswith('-ban'):
-        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -ban')
+        print(time.asctime() + ' - ' + str(message.server) + ' - '
+        + str(message.author) + ' > -ban')
 
         usuario = message.content.strip('-ban ')
         member = discord.utils.find(lambda m: m.mention == usuario,
@@ -52,7 +54,8 @@ async def commandos_admin(message):
         ':x: :x: El usuario ' + usuario + ' ha sido baneado.')
 
     if message.content.startswith('-purge'):
-        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -purge')
+        print(time.asctime() + ' - ' + str(message.server) + ' - '
+        + str(message.author) + ' > -purge')
 
         counter = 0
         await client.send_message(message.channel,
@@ -88,10 +91,9 @@ async def on_ready():
         print('  Versión API:', discord.__version__)
         print('--------------')
         print('  Server List:\nServidor: ' +
-            '\nServidor: '.join(s.name + ' - Dueño: ' + str(s.owner) for s in client.servers))
+            '\nServidor: '.join(
+            s.name + ' - Dueño: ' + str(s.owner) for s in client.servers))
         print('--------------')
-
-tiempo_activo = time.strftime('**%d/%m/%Y %H:%M:%S**', time.gmtime())
 
 @client.event
 async def on_message(message):
@@ -101,14 +103,16 @@ async def on_message(message):
     await commandos_admin(message)
 
     if message.content.startswith('!help'):
-        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > !help')
+        print(time.asctime() + ' - ' + str(message.server) + ' - '
+        + str(message.author) + ' > !help')
 
         await client.send_message(message.channel,
         'El prefijo de este bot es \'-\', un guión. Por ejemplo: `-ping`' +
         '\nPor lo tanto utiliza `-help` si quieres saber los comandos que hay disponibles :mag:')
 
     if message.content.startswith('-help'): # Comando ayuda
-        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -help')
+        print(time.asctime() + ' - ' + str(message.server) + ' - '
+        + str(message.author) + ' > -help')
 
         await client.send_message(message.channel,
         ':arrow_forward: COMANDOS:\n'
@@ -122,7 +126,8 @@ async def on_message(message):
         '```')
 
     if message.content.startswith('-ping'): # Dice la fecha de cuando se inicio el server
-        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -ping')
+        print(time.asctime() + ' - ' + str(message.server) + ' - '
+        + str(message.author) + ' > -ping')
 
         msg = await client.send_message(message.channel,
         '**PONG!** Creado por **@Barea1396#5050**'
@@ -135,7 +140,8 @@ async def on_message(message):
         '\n\nPing: `' + str(tiempo_total) + '` ms')
 
     if message.content.startswith('-invitar'): # Devuelve el link para añadir el bot
-        print(time.asctime() + ' - ' + str(message.server) + ' - ' + str(message.author) + ' > -invitar')
+        print(time.asctime() + ' - ' + str(message.server) + ' - '
+        + str(message.author) + ' > -invitar')
 
         await client.send_message(message.channel,
         'Invitame a tu servidor! https://goo.gl/d4N8bS')
