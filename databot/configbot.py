@@ -4,4 +4,4 @@
 
 # This is config file of N3utr0n
 
-tokenbot = ''
+tokenbot = 'MjQyNjEzMjQ2MzcxMDM3MTg1.Cvi_UA.Nfge3VWoIEkdzRO7YCrSaSiyXnE'
