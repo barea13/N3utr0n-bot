@@ -11,6 +11,7 @@ from datetime import datetime
 import databot.configbot
 # Constantes
 tokenbot = databot.configbot.tokenbot
+info_bot = databot.configbot.info_bot
 client = discord.Client()
 logging.basicConfig(level=logging.CRITICAL,
 format='%(asctime)s | %(levelname)s | %(name)s: %(message)s')
@@ -78,6 +79,18 @@ async def commandos_admin(message):
         else:
             await client.send_message(message.channel, 'Faltan argumentos')
 
+async def comandos_mod(message):
+    if message.content.startswith('-whitelist'):
+        print(time.asctime() + ' - ' + str(message.server) + ' - '
+            + str(message.author) + ' > -whitelist')
+        comando = len('-whitelist')
+        argumentos = message.content[comando:]
+        lista_argumentos = argumentos.split()
+        if len(lista_argumentos) > 0:
+            await client.send_message(message.channel, lista_argumentos[0])
+        else:
+            await client.send_message(message.channel, 'Faltan argumentos')
+
 # ---------------------------------------------------------------------
 
 @client.event
@@ -101,6 +114,7 @@ async def on_message(message):
     tiempo_init = datetime.now()
 
     await commandos_admin(message)
+    await comandos_mod(message)
 
     if message.content.startswith('!help'):
         print(time.asctime() + ' - ' + str(message.server) + ' - '
@@ -124,6 +138,9 @@ async def on_message(message):
         '\n-kick -- Puedes expulsar a un miembro del servidor usando la mención'
         '\n-ban -- Baneas a un miembro del servidor usando la mención'
         '```')
+
+    if message.content.startswith('-info'):
+        await client.send_message(message.channel, info_bot)
 
     if message.content.startswith('-ping'): # Dice la fecha de cuando se inicio el server
         print(time.asctime() + ' - ' + str(message.server) + ' - '
