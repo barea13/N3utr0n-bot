@@ -4,6 +4,6 @@
 
 # This is config file of N3utr0n
 
-tokenbot = 'MjQyNjEzMjQ2MzcxMDM3MTg1.Cvi_UA.Nfge3VWoIEkdzRO7YCrSaSiyXnE'
+tokenbot = ''
 
 info_bot = ''
